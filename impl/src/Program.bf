@@ -80,6 +80,15 @@ class Program
 		Glfw.SetWindowSizeCallback(window, new (window, width, height) => {
 			draw(window);
 		});
+		Glfw.SetWindowRefreshCallback(window, new (window) => {
+		   draw(window);
+		});
+		Glfw.SetFramebufferSizeCallback(window, new (window, width, height) => {
+			GL.glViewport(0, 0, width, height);
+		});
+		Glfw.SetWindowPosCallback(window, new (window, x, y) => {
+		   draw(window);
+		});
 
 		Glfw.ShowWindow(window);
 
@@ -96,6 +105,7 @@ class Program
 		defer
 		{
 			Glfw.SwapBuffers(window);
+			GL.glFinish();
 		}
 
 		int display_width = 0, display_height = 0;
