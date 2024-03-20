@@ -1,30 +1,24 @@
 namespace ZenLang;
 
-// "C++" like.
 private class Widget
 {
     // Instanced data fields
-public:
-    int X;
-    int Y;
-private:
-    float lol;
-    double bruh;
+    public int X;
+    public int Y;
+
+    private float lol;
+    private double bruh;
 
     // Shared data fields
-private static:
-    int s_total_count;
-private const:
-    int c_max_widgets;
+    private static int s_total_count;
+    private const int c_max_widgets;
 
-public:
-    void Calculate()
+    public void Calculate()
     {
         // Calculate Widget
     }
 }
 
-// "C#" like, both are valid.
 private class Entity
 {
     public string Name;
@@ -41,4 +35,16 @@ private struct Vector2
 {
     public float X;
     public float Y;
+}
+
+
+public class Player : Entity, BaseObject
+{
+    public float Name = "Pelly";
+    public float Health;
+
+    void die()
+    {
+        // kill player
+    }
 }

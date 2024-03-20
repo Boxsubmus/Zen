@@ -1,6 +1,6 @@
 // We don't assume private or public by default, you have to specify.
-private:
-enum int Regular_Enum
+
+private enum int Regular_Enum
 {
     a,
     b,
@@ -8,14 +8,14 @@ enum int Regular_Enum
     d = 3
 }
 
-enum any Mixed_Enum
+private enum any Mixed_Enum
 {
     a = "hello",
     b = 1,
     c = 4.124
 }
 
-enum Color
+private enum int Color
 {
     Yellow,
     Red,
@@ -23,8 +23,7 @@ enum Color
     Blue,
 
     // Enums can have methods, but not fields
-public:
-    bool Is_Green()
+    public bool Is_Green()
     {
         if (self == .Green)
         {
@@ -34,7 +33,7 @@ public:
     }
 }
 
-fun void print_color(Color color)
+private fun void print_color(Color color)
 {
     match color
     {
