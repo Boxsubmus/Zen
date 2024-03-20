@@ -1,0 +1,44 @@
+namespace ZenLang;
+
+// "C++" like.
+private class Widget
+{
+    // Instanced data fields
+public:
+    int X;
+    int Y;
+private:
+    float lol;
+    double bruh;
+
+    // Shared data fields
+private static:
+    int s_total_count;
+private const:
+    int c_max_widgets;
+
+public:
+    void Calculate()
+    {
+        // Calculate Widget
+    }
+}
+
+// "C#" like, both are valid.
+private class Entity
+{
+    public string Name;
+    public Vector2 Position;
+
+    // Methods don't need the "fun" keyword.
+    private void register()
+    {
+        // Do game entity stuff
+    }
+}
+
+private struct Vector2
+{
+    public float X;
+    public float Y;
+}

@@ -1,0 +1,28 @@
+using System;
+namespace ZenLang;
+
+public fun int main()
+{
+    println("hello, world!");
+
+    return 0;
+}
+
+public struct Vector2
+{
+public:
+    float X;
+    float Y;
+}
+
+public class Player : Entity, BaseObject
+{
+public:
+    float Name = "Pelly";
+    float Health;
+
+    void die()
+    {
+        // kill player
+    }
+}

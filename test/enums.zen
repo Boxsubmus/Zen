@@ -1,0 +1,46 @@
+// We don't assume private or public by default, you have to specify.
+private:
+enum int Regular_Enum
+{
+    a,
+    b,
+    c = 2,
+    d = 3
+}
+
+enum any Mixed_Enum
+{
+    a = "hello",
+    b = 1,
+    c = 4.124
+}
+
+enum Color
+{
+    Yellow,
+    Red,
+    Green,
+    Blue,
+
+    // Enums can have methods, but not fields
+public:
+    bool Is_Green()
+    {
+        if (self == .Green)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+fun void print_color(Color color)
+{
+    match color
+    {
+        .Red => println("red"),
+        .Green => println("green"),
+        .Yellow => println("yellow"),
+        .Blue => println("blue"),
+    }
+}
