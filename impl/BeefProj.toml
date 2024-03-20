@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", GLFW = "*", ImGui = "*", ImGuiImplGlfw = "*", ImGuiImplOpenGL3 = "*"}
+
+[Project]
+Name = "ZenIDE"
+StartupObject = "ZenIDE.Program"

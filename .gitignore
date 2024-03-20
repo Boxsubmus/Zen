@@ -1,0 +1,19 @@
+## Beef
+build
+BeefSpace_User.toml
+dist
+recovery
+*.zip
+
+# Binaries
+Helper/bin/
+Helper/bin-int/
+Helper/libs/libs_x64/Helper.lib
+
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.csproj
