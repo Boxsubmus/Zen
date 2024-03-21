@@ -43,30 +43,36 @@ class CodeEditor
 	public void Update()
 	{
 		m_FrameCount++;
-		ImGui.SetNextWindowPos(.(0, 0));
-		ImGui.SetNextWindowSize(.(SCREEN_WIDTH, SCREEN_HEIGHT));
-		ImGui.PushStyleVar(.WindowPadding, ImGui.Vec2(0, 0));
+		// ImGui.SetNextWindowPos(.(0, 0));
+		// ImGui.SetNextWindowSize(.(SCREEN_WIDTH, SCREEN_HEIGHT));
+
+		ImGui.PushStyleVar(.WindowPadding, ImGui.Vec2(8, 8));
 		defer ImGui.PopStyleVar();
 
-		let window_size = ImGui.Vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
 		let font_size = ImGui.GetFontSize();
 
-		// ImGui.SetNextWindowContentSize(.(0, content_height_in_lines));
-
-		if (ImGui.Begin("Code Editor", null, .NoMove | .NoResize | .NoCollapse | .NoTitleBar | .NoScrollbar))
+		if (ImGui.Begin("Code Editor", null, .NoScrollbar))
 		{
-			ImGui.SetNextWindowPos(.(8, 8));
-			let content_size = ImGui.Vec2(window_size.x - 16, window_size.y - 16);
-			if (ImGui.BeginChild("__mainEditor", content_size, false, .NoScrollbar))
+			let window_pos = ImGui.GetCursorScreenPos();
+			let window_size = ImGui.GetContentRegionMax();
+
+			let content_size = ImGui.Vec2(window_size.x, window_size.y);
+
+			/*
 			{
 				let draw_list = ImGui.GetWindowDrawList();
-				let draw_pos_screen = ImGui.GetCursorScreenPos() + .(ImGui.GetScrollX(), ImGui.GetScrollY());
 
-				/*
-				let draw_pos = ImGui.GetCursorScreenPos() + .(0, 0);
-				let draw_max = ImGui.GetContentRegionMax();
-				let draw_pos_screen_max = draw_pos_screen + content_size;
-				*/
+				draw_list.AddRectFilled(ImGui.GetCursorScreenPos(), ImGui.GetCursorScreenPos() + .(ImGui.GetContentRegionAvail().x, 16), Color.darkGray);
+				ImGui.Text("ide.zen");
+			}
+			*/
+			if (ImGui.BeginChild("__mainEditor", .(0, 0), false, .NoScrollbar))
+			{
+				let draw_list = ImGui.GetWindowDrawList();
+				let screen_pos = ImGui.GetCursorScreenPos();
+
+				let draw_pos_screen = screen_pos + .(ImGui.GetScrollX(), ImGui.GetScrollY());
+				let draw_pos_screen_max = draw_pos_screen + ImGui.GetContentRegionAvail();
 
 				var max_width_in_pixels = 0.0f;
 				let linecount_digits = scope $"{m_Lines.Count}".Length;
@@ -74,21 +80,23 @@ class CodeEditor
 
 				var codeRectScrollY = 0.0f;
 
-				ImGui.SetNextWindowPos(ImGui.GetCursorScreenPos() + .(sidenum_width, 0));
-				if (ImGui.BeginChild("__codeRect", .(-sidenum_width, 0), false, .AlwaysHorizontalScrollbar | .AlwaysVerticalScrollbar))
+				ImGui.SetNextWindowPos(screen_pos + .(sidenum_width + 1, 1));
+				if (ImGui.BeginChild("__codeRect", .(-sidenum_width - 3, -3), false, .AlwaysHorizontalScrollbar | .AlwaysVerticalScrollbar))
 				{
 					codeRectScrollY = ImGui.GetScrollY();
 					draw_actual_content(sidenum_width, font_size, linecount_digits, out max_width_in_pixels);
 				}
 				ImGui.EndChild();
 
-				
-				for (var i < m_Lines.Count)
+				for (let i < m_Lines.Count)
 				{
 					let str = scope $"{i + 1}";
 					str.PadLeft(linecount_digits, ' ');
-					draw_list.AddText(.(draw_pos_screen.x, draw_pos_screen.y + (i * font_size) - codeRectScrollY), Color.lightGray, str);
+					draw_list.AddText(.(draw_pos_screen.x, 2 + draw_pos_screen.y + (i * font_size) - codeRectScrollY), Color.lightGray, str);
 				}
+
+				draw_list.AddRectFilled(draw_pos_screen_max - .(16, 16), draw_pos_screen_max - .(1, 1), ImGui.GetColorU32(.ScrollbarBg));
+				draw_list.AddRect(draw_pos_screen + .(sidenum_width, 0), draw_pos_screen_max - .(1, 1), Color.fanty, 0, .None, 1);
 			}
 			ImGui.EndChild();
 		}
@@ -110,14 +118,14 @@ class CodeEditor
 		let text_padding = 6;
 		// draw_list.AddRectFilled(code_rect.Min, code_rect.Max, Color("#2d2d31"), 4, .None);
 
-		draw_list.AddRectFilled(draw_pos_screen, draw_pos_screen_max, Color("#2d2d31"), 6, .None);
+		draw_list.AddRectFilled(draw_pos_screen, draw_pos_screen_max, Color("#2d2d31"), 0, .None);
 
 		float getLineY(int line)
 		{
 			return (line * font_size) - ImGui.GetScrollY();
 		}
 
-		for (var i < m_Lines.Count)
+		for (let i < m_Lines.Count)
 		{
 			let line = m_Lines[i];
 
@@ -128,9 +136,6 @@ class CodeEditor
 
 			draw_list.AddText(.(draw_pos_screen.x + text_padding - ImGui.GetScrollX(), draw_pos_screen.y + getLineY(i) - (font_size * 0.2f) + text_padding), Color.white, line);
 		}
-
-		// main border
-		draw_list.AddRect(code_rect.Min, code_rect.Max, Color.fanty, 0, .None, 1);
 
 		// makes sure we can scroll
 		ImGui.Dummy(.(max_width_in_pixels + (font_size * 4), ((m_Lines.Count - 1) * font_size) + content_size.y ));

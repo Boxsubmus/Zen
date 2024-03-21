@@ -65,11 +65,16 @@ class Program
 
 		let io = ImGui.GetIO();
 		io.ConfigFlags |= .DockingEnable;
-		io.Fonts.AddFontFromFileTTF("resources/SourceCodePro-Regular.ttf", 20);
+		io.Fonts.AddFontFromFileTTF("resources/SourceCodePro-Regular.ttf", 18);
 
 		ImGui.StyleColorsDark();
 		ImGui.PushStyleColor(.WindowBg, ZenIDE.GFX.Color("#44444d"));
-
+		/*
+		ImGui.PushStyleColor(.ScrollbarBg, ZenIDE.GFX.Color("#44444d"));
+		ImGui.PushStyleColor(.ScrollbarGrab, ZenIDE.GFX.Color("#696f75"));
+		ImGui.PushStyleColor(.ScrollbarGrabActive, ZenIDE.GFX.Color("#b4b7ba"));
+		ImGui.PushStyleColor(.ScrollbarGrabHovered, ZenIDE.GFX.Color("#b4b7ba"));
+		*/
 		ImGuiImplGlfw.InitForOpenGL(window, true);
 		defer ImGuiImplGlfw.Shutdown();
 
@@ -124,7 +129,7 @@ class Program
 		ImGui.Render();
 
 		GL.glViewport(0, 0, display_width, display_height);
-		GL.glClearColor(1, 0, 1, 1);
+		GL.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 		GL.glClear(GL.GL_COLOR_BUFFER_BIT);
 
 		ImGuiImplOpenGL3.RenderDrawData(ImGui.GetDrawData());
