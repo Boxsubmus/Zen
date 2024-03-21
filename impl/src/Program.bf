@@ -65,8 +65,10 @@ class Program
 
 		let io = ImGui.GetIO();
 		io.ConfigFlags |= .DockingEnable;
+		io.Fonts.AddFontFromFileTTF("resources/JetBrainsMono-Regular.ttf", 20);
 
 		ImGui.StyleColorsDark();
+		ImGui.PushStyleColor(.WindowBg, ZenIDE.GFX.Color("#2d2d31"));
 
 		ImGuiImplGlfw.InitForOpenGL(window, true);
 		defer ImGuiImplGlfw.Shutdown();

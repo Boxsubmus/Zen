@@ -4,3 +4,6 @@ Dependencies = {corlib = "*", GLFW = "*", ImGui = "*", ImGuiImplGlfw = "*", ImGu
 [Project]
 Name = "ZenIDE"
 StartupObject = "ZenIDE.Program"
+
+[Configs.Debug.Win64]
+PostBuildCmds = ["CopyFilesIfNewer(\"$(ProjectDir)/resources\", \"$(BuildDir)\")"]

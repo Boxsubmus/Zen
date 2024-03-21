@@ -33,7 +33,7 @@ private enum int Color
     }
 }
 
-private fun void print_color(Color color)
+private function void print_color(Color color)
 {
     match color
     {
