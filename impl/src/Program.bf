@@ -65,7 +65,7 @@ class Program
 
 		let io = ImGui.GetIO();
 		io.ConfigFlags |= .DockingEnable;
-		io.Fonts.AddFontFromFileTTF("resources/SourceCodePro-Regular.ttf", 18);
+		io.Fonts.AddFontFromFileTTF("resources/SourceCodePro-Regular.ttf", 20);
 
 		ImGui.StyleColorsDark();
 		ImGui.PushStyleColor(.WindowBg, ZenIDE.GFX.Color("#44444d"));

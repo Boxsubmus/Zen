@@ -5,3 +5,18 @@ public function void main()
 {
     println("hello, world!");
 }
+
+private enum int Regular_Enum
+{
+    a,
+    b,
+    c = 2,
+    d = 3
+}
+
+private enum any Mixed_Enum
+{
+    a = "hello",
+    b = 1,
+    c = 4.124
+}
