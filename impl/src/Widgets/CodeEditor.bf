@@ -45,6 +45,8 @@ class CodeEditor
 		m_FrameCount++;
 		ImGui.SetNextWindowPos(.(0, 0));
 		ImGui.SetNextWindowSize(.(SCREEN_WIDTH, SCREEN_HEIGHT));
+		ImGui.PushStyleVar(.WindowPadding, ImGui.Vec2(0, 0));
+		defer ImGui.PopStyleVar();
 
 		let window_size = ImGui.Vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
 		let content_height_in_lines = window_size.y;
@@ -55,10 +57,16 @@ class CodeEditor
 		if (ImGui.Begin("Code Editor", null, .NoMove | .NoResize | .NoCollapse | .NoTitleBar | .HorizontalScrollbar | .AlwaysVerticalScrollbar))
 		{
 			let draw_list = ImGui.GetWindowDrawList();
-			let draw_pos = ImGui.GetCursorScreenPos();
+			let draw_pos = ImGui.GetCursorScreenPos() + .(8, 8);
+			let draw_max = ImGui.GetContentRegionAvail() - 1;
 
 			var max_width_in_pixels = 0.0f;
-			let sidenum_width = (scope $"{m_Lines.Count}".Length * font_size);
+			let sidenum_width = ((scope $"{m_Lines.Count}".Length - 1) * font_size) + font_size;
+
+			//draw_list.AddRectFilled(.(draw_pos.x, draw_pos.y), .(draw_pos.x + sidenum_width, draw_max.y + ImGui.GetScrollY() - 16), Color.black);
+			let code_rect = ImGui.Rect(.(draw_pos.x + sidenum_width, draw_pos.y), .(draw_max.x - 8, draw_pos.y + (m_Lines.Count * font_size) + 6));
+			draw_list.AddRectFilled(code_rect.Min, code_rect.Max, Color("#2d2d31"), 4, .None);
+			draw_list.AddRect(code_rect.Min, code_rect.Max, Color.fanty, 4, .None, 1);
 
 			for (var i < m_Lines.Count)
 			{
@@ -70,14 +78,23 @@ class CodeEditor
 					max_width_in_pixels = ImGui.CalcTextSize(line).x;
 				}
 
-				draw_list.AddText(.(draw_pos.x + sidenum_width, draw_pos.y + y), Color.white, line);
+				draw_list.PushClipRect(.(sidenum_width - ImGui.GetScrollX(), code_rect.Min.y - ImGui.GetScrollY()), code_rect.Max + .(0, ImGui.GetScrollY()));
+
+				draw_list.AddText(.(draw_pos.x + sidenum_width + 4, draw_pos.y + y), Color.white, line);
+
+				draw_list.PopClipRect();
 
 				// side number thing
 				draw_list.AddText(.(draw_pos.x, draw_pos.y + y), Color.gray, scope $"{i + 1}");
 			}
 
 			// makes sure we can scroll
-			ImGui.Dummy(.(max_width_in_pixels + sidenum_width, (content_height_in_lines - 10) + ((m_Lines.Count - 1) * font_size)));
+			ImGui.Dummy(.(max_width_in_pixels + sidenum_width + 24, (content_height_in_lines - 10) + ((m_Lines.Count) * font_size)));
+
+			if (ImGui.IsMouseHoveringRect(code_rect.Min, code_rect.Max))
+			{
+				ImGui.SetMouseCursor(.TextInput);
+			}
 		}
 		ImGui.End();
 	}

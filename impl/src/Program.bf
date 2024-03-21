@@ -56,7 +56,7 @@ class Program
 		defer Glfw.DestroyWindow(window);
 
 		Glfw.MakeContextCurrent(window);
-		Glfw.SwapInterval(1);
+		Glfw.SwapInterval(1); // VSync
 
 		GL.Init(=> Glfw.GetProcAddress);
 
@@ -65,10 +65,10 @@ class Program
 
 		let io = ImGui.GetIO();
 		io.ConfigFlags |= .DockingEnable;
-		io.Fonts.AddFontFromFileTTF("resources/JetBrainsMono-Regular.ttf", 20);
+		io.Fonts.AddFontFromFileTTF("resources/SourceCodePro-Regular.ttf", 18);
 
 		ImGui.StyleColorsDark();
-		ImGui.PushStyleColor(.WindowBg, ZenIDE.GFX.Color("#2d2d31"));
+		ImGui.PushStyleColor(.WindowBg, ZenIDE.GFX.Color("#44444d"));
 
 		ImGuiImplGlfw.InitForOpenGL(window, true);
 		defer ImGuiImplGlfw.Shutdown();
