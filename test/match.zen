@@ -1,6 +1,6 @@
 // Match keyword, stolen from Rust mostly.
 
-public function void main()
+public fun void main()
 {
     let age = 18;
     match age
