@@ -17,11 +17,11 @@ Behaviors included but not limited to which is considered "incorrect":
 * Leaks of memory or other resources
 * Deadlocks
 * Exiting without calling destructors
-* Integer overflow
+* Integer overflows
 * Returning a stack-allocated object
 * Freeing without nullifying
 * Writing to a pointer created from an immutable reference
-* Implicit casting floats to ints
+* Implicitly casting floats to ints
 * Undefined behavior
 
 An example of the compiler enforcing correctness:
