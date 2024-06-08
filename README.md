@@ -12,7 +12,7 @@ The common assertion that you may hear a lot is: "Make it work, make it right, m
 
 Correctness, in the context of Zen, means 'making it right is **mandatory**'.
 
-Behaviors included but not limited to which are considered "incorrect":
+Behaviors included but not limited to which is considered "incorrect":
 
 * Leaks of memory or other resources
 * Deadlocks
