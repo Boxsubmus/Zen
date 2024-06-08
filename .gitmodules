@@ -1,9 +1,0 @@
-[submodule "impl/vendor/glfw-beef"]
-	path = impl/vendor/glfw-beef
-	url = https://github.com/MineGame159/glfw-beef
-[submodule "impl/vendor/imgui-beef"]
-	path = impl/vendor/imgui-beef
-	url = https://github.com/Boxsubmus/imgui-beef
-[submodule "impl/vendor/opengl-beef"]
-	path = impl/vendor/opengl-beef
-	url = https://github.com/MineGame159/opengl-beef
