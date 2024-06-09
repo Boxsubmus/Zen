@@ -1,0 +1,14 @@
+load "stdlib/print.zen";
+
+public fun void StaticFunction()
+{
+    println("whatever");
+}
+
+public class Program
+{
+    public static void StaticMethod()
+    {
+        println("whatever");
+    }
+}

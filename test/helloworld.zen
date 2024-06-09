@@ -1,6 +1,7 @@
 using System;
 
 load "std/math.zen";
+load "std/print.zen";
 
 private fun void test()
 {
@@ -8,33 +9,50 @@ private fun void test()
     return;
 } // Compiler error, doesn't need to exist.
 
-public fun void Main()
-{
-    println("hello, world!");
-    // println(scope $"2 + 2 = {add<int>(2, 2)}");
-}
 
-// Equivalent to `unsafe` in Rust, allows "untrustworthy" code.
+// Similar to `unsafe` in Rust, allows "untrustworthy" code.
 trustme
 {
     private class TestClass
     {
-        public any a; // any is only allowed in untrustworthy contexts, equivalent to `dynamic` in C#.
+        public any a; // `any` is only allowed in "untrustworthy" contexts, equivalent to `dynamic` in C#.
         public float32 b;
     }
 
-    private fun void untrustworthy()
+    private fun any getUntrustworthy()
     {
         var testClass = new TestClass();
         var testClassPtr = &testClass;
 
         testClassPtr.a = 0;
         testClassPtr.a = "bop";
+    } // Memory leak, lol.
+
+    private fun void printUntrustworthy()
+    {
+        let val = (string)getUntrustworthy();
+        println(val);
     }
 }
 
 // yolo means a function can only be called once.
-private fun void Yippy() yolo
+private fun void yippy() yolo
 {
-
+    let arr = scope float32[];
+    arr.pop(); // Compiler error, the array is immutable and was initialized as empty, we can't pop an empty array, and we can prove that the array will be empty.
 }
+
+private fun void draw()
+{
+    // Immutable variable, we don't expect this to change and we will throw an error if it does.
+    let pos = Vector2(32, 32);
+
+    {
+        // Mutable variable, we expect this to change and we will throw an error if it doesn't.
+        var scale = Vector2(1, 1);
+
+        Graphics::DrawRectangle(pos, scale, Color::Orange);
+
+    } // Scope ends, error thrown for 'scale' because it is incorrect that a variable was marked as mutable, yet it was not treated as such.
+
+} // Scope ends, no error for 'pos' because we respect the fact that it's immutable
