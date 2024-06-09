@@ -2,7 +2,7 @@ using System;
 
 load <std/math.zen>;
 
-fun void test()
+private fun void test()
 {
     return;
 } // Compiler error, doesn't need to exist.
