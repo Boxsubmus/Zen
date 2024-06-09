@@ -1,6 +1,10 @@
 // Match keyword, stolen from Rust mostly.
 
-public fun void main()
+/*
+    Multi-line comment.
+*/
+
+public fun void MatchThat()
 {
     let age = 18;
     match age
@@ -8,6 +12,7 @@ public fun void main()
         (value < 0) => println("huh?") // This will not work
         (0..17) => println("too young..."),
         (18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26) => println("hello"),
+        (30 | 20) => ("a"),
         _ => println("too old")
     }
 }

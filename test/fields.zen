@@ -43,7 +43,7 @@ public class Player : Entity, BaseObject
     public float Name = "Pelly";
     public float Health;
 
-    void die()
+    private void die()
     {
         // kill player
     }

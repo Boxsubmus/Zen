@@ -1,0 +1,89 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Zen",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#types"
+		},
+
+		{
+			"include": "#preprocessor-rule-conditional"
+        },
+		{
+			"include": "#preprocessor-alias-definition"
+		},
+		{
+			"include": "#preprocessor-function-definition"
+		},
+		{
+            "include": "#match"
+        }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.zen",
+				"match": "\\b(if|while|for|return|let|var|match|public|fun|load|void|using|private|enum|namespace|any|scope|new|delete|self)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.zen",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.zen",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+                    "name": "comment.block.zen",
+                    "begin": "/\\*",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.zen"
+                        }
+                    },
+                    "end": "\\*/",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.zen"
+                        }
+                    }
+                },
+				{
+					"name": "comment.line.double-slash.zen",
+					"begin": "(\\/\\/)",
+					"end": "(?=\\n)"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+			  {
+				"name": "constant.numeric.customlang",
+				"match": "\\b\\d+\\b"
+			  }
+			]
+		}
+	},
+	"scopeName": "source.zen"
+}

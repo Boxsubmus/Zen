@@ -1,8 +1,13 @@
 using System;
 
-#load <stdlib/math.zen>
+load <std/math.zen>;
 
-public fun void main()
+fun void test()
+{
+    return;
+} // Compiler error, doesn't need to exist.
+
+public fun void Main()
 {
     println("hello, world!");
     println(scope $"2 + 2 = {add<int>(2, 2)}");

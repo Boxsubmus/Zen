@@ -23,17 +23,10 @@ private enum int Color
     Blue,
 
     // Enums can have methods, but not fields
-    public bool Is_Green()
-    {
-        if (self == .Green)
-        {
-            return true;
-        }
-        return false;
-    }
+    public bool Is_Green() => self == .Green;
 }
 
-private function void print_color(Color color)
+private fun void print_color(Color color)
 {
     match color
     {

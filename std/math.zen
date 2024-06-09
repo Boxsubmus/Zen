@@ -1,0 +1,10 @@
+namespace System;
+
+#define PI      :: 3.141592653589793
+#define TWO_PI  :: 6.283185307179587
+#define HALF_PI :: 1.570796326794897
+
+public fun T add<T>(T a, T b) => a + b;
+public fun T sub<T>(T a, T b) => a - b;
+public fun T mul<T>(T a, T b) => a * b;
+public fun T div<T>(T a, T b) => a / b;
