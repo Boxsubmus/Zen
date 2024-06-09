@@ -1,7 +1,9 @@
 using System;
-namespace ZenLang;
+
+#load <stdlib/math.zen>
 
 public fun void main()
 {
     println("hello, world!");
+    println(scope $"2 + 2 = {add<int>(2, 2)}");
 }
