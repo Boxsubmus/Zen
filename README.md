@@ -22,6 +22,7 @@ Behaviors included but not limited to which is considered "incorrect":
 * Freeing without nullifying
 * Writing to a pointer created from an immutable reference
 * Implicitly casting floats to ints
+* Exceptions
 * Undefined behavior
 
 An example of the compiler enforcing correctness:

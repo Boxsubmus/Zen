@@ -38,7 +38,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.zen",
-				"match": "\\b(if|while|for|return|let|var|match|public|fun|load|void|using|private|enum|namespace|any|scope|new|delete|self)\\b"
+				"match": "\\b(if|while|for|return|let|var|match|public|fun|load|void|using|struct|class|private|enum|namespace|scope|new|delete|self|trustme|yolo)\\b"
 			}]
 		},
 		"strings": {
@@ -81,6 +81,22 @@
 			  {
 				"name": "constant.numeric.customlang",
 				"match": "\\b\\d+\\b"
+			  }
+			]
+		},
+		"functions": {
+			"patterns": [
+			  {
+				"name": "support.function.customlang",
+				"match": "\\b(add|println)\\b"
+			  }
+			]
+		},
+		"types": {
+			"patterns": [
+			  {
+				"name": "support.type.customlang",
+				"match": "\\b(int32|float32|any)\\b"
 			  }
 			]
 		}
