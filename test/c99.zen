@@ -1,0 +1,13 @@
+trustme c99 (
+    #include <stdio.h>
+    int print(const char *msg)
+    {
+        printf(msg);
+        return 0;
+    }
+);
+
+public fun void CallingC99()
+{
+    c99(print("whatever"));
+}

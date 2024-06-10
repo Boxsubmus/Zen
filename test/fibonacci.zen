@@ -1,0 +1,25 @@
+load "std/print.zen";
+
+private fun int fib()
+{
+    var a = 0;
+    var b = 1;
+    
+    fun int fibonacci()
+    {
+        var c = a;
+        a = b;
+        b = a + c;
+        return c;
+    }
+
+    return fibonacci();
+}
+
+public fun void Main()
+{
+    for (let i < 10)
+    {
+        println(fib());
+    }
+}
