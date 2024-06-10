@@ -1,11 +1,11 @@
 load "std/print.zen";
 
-private fun int fib()
+private fun int32 fib()
 {
     var a = 0;
     var b = 1;
     
-    fun int fibonacci()
+    fun int32 fibonacci()
     {
         var c = a;
         a = b;

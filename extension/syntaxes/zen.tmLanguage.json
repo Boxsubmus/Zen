@@ -88,7 +88,7 @@
 			"patterns": [
 			  {
 				"name": "support.function.customlang",
-				"match": "\\b(println)\\b"
+				"match": "\\b(dsddsasdsasdsadsdsd)\\b"
 			  }
 			]
 		},

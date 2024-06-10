@@ -1,0 +1,7 @@
+trustme
+{
+    // Might be inferred by the compiler... not sure...
+    public fun void println(any msg) {}
+    
+    public fun void print(any msg) {}
+}
