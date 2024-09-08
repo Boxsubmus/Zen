@@ -2,7 +2,7 @@
 Ideas for a programming language
 
 ## About
-Zen is a statically and strongly typed object-oriented programming language that is also subset of C. It is designed as a language for game development first, and therefore, most of it's decisions come from that perspective.
+Zen is a statically and strongly typed object-oriented programming language that is also subset of C. It is designed as a language for game development first, and therefore, most of its decisions come from that perspective.
 
 Zen is an opinionated-language. While Rust focuses on *safety*, Zen focuses on *correctness*. The name is a play on the fact that you're *zen* when you know that your code is "correct".
 
