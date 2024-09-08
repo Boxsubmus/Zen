@@ -37,7 +37,7 @@ public fun void draw()
         // Mutable variable, we expect this to change and we will throw an error if it doesn't.
         var scale = Vector2(1, 1);
 
-        Graphics::DrawRectangle(pos, scale, Color::Orange);
+        Trinket::Graphics::DrawRectangle(pos, scale, Color::Orange);
     } // Scope ends, error thrown for 'scale' because it is incorrect that a variable was marked as mutable, yet it was not treated as such.
 
 } // Scope ends, no error for 'pos' because we respect the fact that it's immutable
