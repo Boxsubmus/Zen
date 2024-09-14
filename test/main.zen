@@ -1,0 +1,9 @@
+#load "std/print.zen";
+
+#scope_file
+fun void main()
+{
+    std::println("Hello, Sailor!");
+}
+
+#run main();
